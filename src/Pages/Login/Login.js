@@ -5,15 +5,18 @@ import './Login.css'
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Loading from '../Shared/Loading/Loading';
 
 
 const Login = () => {
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState('');  
+    let errorElement;
     const [
         signInWithEmailAndPassword,
         user,
-        loading
+        loading,
+        error
       ] = useSignInWithEmailAndPassword(auth);
 
       const navigate = useNavigate()
@@ -30,9 +33,18 @@ const Login = () => {
         event.preventDefault()
         signInWithEmailAndPassword(email,password)
     }
+    if (loading) {
+        return <Loading></Loading>
+    }
+
     if(user){
         navigate(from, { replace: true });
     }
+    
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+    }
+    
     return (
             <div className='form-container text-white mb-5'>
                 <h2 className='form-title text-danger fw-bolder fs-2 mt-4'>Log In</h2>
@@ -45,6 +57,7 @@ const Login = () => {
                         <span className='level'>Password</span>
                         <input onBlur={hendlePassword} className='' type='password' required></input>
                     </div>
+                    {errorElement}
                     <input type='submit' className='submite-button'></input>
                 </form>
                 <p style={{marginTop:'8px'}}>New to Doctor room? <Link to='/signup'>please signUp</Link></p>

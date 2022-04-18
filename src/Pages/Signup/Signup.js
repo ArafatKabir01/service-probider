@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Loading from '../Shared/Loading/Loading';
 
 const Signup = () => {
     const [email , setEmail] = useState('');
@@ -46,6 +47,9 @@ const Signup = () => {
             setError('')
         };
         createUserWithEmailAndPassword(email, password)
+        if(loading){
+            return <Loading></Loading>
+        }
   
     }
 
