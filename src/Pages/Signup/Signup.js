@@ -27,7 +27,7 @@ const Signup = () => {
         user,
         loading,
        
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(auth ,{sendEmailVerification : true});
       if(user){
         console.log(user)
         navigate('/')

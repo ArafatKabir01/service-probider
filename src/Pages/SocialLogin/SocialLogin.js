@@ -7,20 +7,15 @@ import Loading from '../Shared/Loading/Loading';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-    const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate = useNavigate();
-    
     let errorElement;
-
-    if(loading || loading1){
+    if(loading){
         return <Loading></Loading>
     }
-
-    if (error || error1) {
-        errorElement = <p className='text-danger'>Error: {error?.message} {error1?.message}</p>
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
     }
-
-    if (user || user1) {
+    if (user) {
         navigate('/');
     }
     return (
@@ -31,14 +26,6 @@ const SocialLogin = () => {
                     onClick={() => signInWithGoogle()}
                     className='btn btn-info w-80 d-block mx-auto my-2'>
                     <span className='px-2'>Google Sign In</span>
-                </button>
-                <button className='btn btn-info w-80 d-block mx-auto my-2'>
-                    <span className='px-2'>Facebook Sign In</span>
-                </button>
-                <button
-                    onClick={() => signInWithGithub()}
-                    className='btn btn-info w-80 d-block mx-auto'>
-                    <span className='px-2'>Github Sign In</span>
                 </button>
             </div>
         </div>
