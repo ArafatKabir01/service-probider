@@ -1,29 +1,56 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Carousel } from 'react-bootstrap';
 import bannerimg from '../../../images/banner_img/Female-Doctor.png'
 import './Banner.css'
 
 const Banner = () => {
-    return (
-        <div className='container d-md-flex align-content-center justify-content-center d-sm-block'>
-            <div className='benner-info'>
-                <h2 className='fs-1 mt-5'>Hi I'm Doctor Selina</h2>
-                <h4>Eye Specialist</h4>
-                <p className='mt-4'>
-                    MBBS, FCPS, DGO
-                    Ophthalmology / Eye Specialist & Surgeon
-                    Coordinator & Senior Consultant
-                    Apollo Hospitals Dhaka
-                    Chamber: Apollo Hospitals Dhaka
-                    Plot # 81, Block # E, Basudhara R/A, Dhaka – 1229
-                    Phone: +880-2-8401661, 8845242,
-                    Cell: +880 1841276556, Hotline: 10678
-                </p>
-                <Button>See More</Button>
-            </div>
-            <img className='banner-img' src={bannerimg}></img>
-        </div>
-    );
-};
+    const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  return (
+    <Carousel className='container' activeIndex={index} onSelect={handleSelect}>
+      <Carousel.Item>
+        <img
+          className="d-block float-end w-50"
+          src={bannerimg}
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block float-end w-50"
+          src={bannerimg}
+          alt="Second slide"
+        />
+
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block float-end w-50"
+          src={bannerimg}
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+  );
+}
 
 export default Banner;
