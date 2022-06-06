@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-Laptop warehouse [Live project link](https://laptop-warehouse-auth.web.app/).
+Project Live link [Live project link](https://doctor-room-authentication.web.app/login).
 
 ## Available features
 * Firebase Authentication
